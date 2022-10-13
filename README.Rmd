@@ -1,0 +1,70 @@
+---
+title: "Project Midterm Checkpoint - SDS 322E Fall 2022"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project Team Members:
+- Mike Truong
+- Naila Hajiyeva
+- Naima Sagar
+- Ahad Kesaria
+- Michael Kobrosky
+- Rahul Ranganath
+- Varunika Selvakumar
+
+## Project Introduction:
+
+This project involves analyzing specific building attributes and how they affect the energy efficiency of the building itself. The analysis of the attributes would be done by utilizing a regression model and comparing the building attributes to the heating and cooling loads of the building itself.
+
+This project involves predicting the correlation between the heating and cooling loads of 12 different building types and their different characteristics to make comparisons between different characteristic values and determine if there is a best-fit, most optimal building shape (along with its characteristics) to produce the most energy efficient architecture.
+
+## Dataset Information:
+
+The dataset `(ref: UCI Machine Learning - Energy Efficiency)` comprises 768 samples and provides data on all 8 specific attributes and the heating and cooling efficiencies. The dataset provided to us analyzes 8 specific attributes which are: relative compactness, surface area, wall area, roof area, overall height, orientation, glazing area( glass), and glazing area distribution. These attributes are then compared to the energy efficiency response variables which are heating and cooling loads. Each sample is 1 of 12 different building shapes that were evaluated. All 8 building attribute variables are denoted as X1-X8 and the energy efficiency variables are denoted as Y1-Y2.
+
+## Project Goals:
+
+- Analyze the relationships between 8 building attributes and 2 responses, heating and cooling load.
+- Compare the 12 different building shapes with the relationships of building attributes, heating, and cooling. 
+- Hypothesize which building shapes are the most energy efficient in terms of both heating and cooling loads. 
+- Determine which building shape characteristic(s) is the most crucial to efficient heating and cooling loads.
+- Create visualizations to represent heating and cooling efficiencies across factors.
+
+
+## Experimental Plots with Some Available Parameters
+
+In our quest to study this dataset and determine relationships between any `X-value` and the two `Y-values`, we have produced some experimental visualizations to help us better understand how the building parameters affect the building's energy efficiency. Our headers/real values for columns `X1-X8` and `Y1-Y2` are as follows:
+
+- X1 Relative Compactness
+- X2 Surface Area
+- X3 Wall Area
+- X4 Roof Area
+- X5 Overall Height
+- X6 Orientation
+- X7 Glazing Area
+- X8 Glazing Area Distribution
+- y1 Heating Load
+- y2 Cooling Load
+
+These two plots demonstrate the potential relationship between the `relative compactness/surface area`, `glazing area` and the `heating/cooling loads` of the buildings, faceted into two categories of overall height. We will be studying and modifying these plots, as well as create other experimental plots before landing at ouir final demonstrative plots with better labeling, coloring, ticks, etc.
+
+```{r Experimental Plots}
+library(readxl)
+library(tidyr)
+library(ggplot2)
+df <- read_excel("ENB2012_data.xlsx")
+
+
+ggplot(df,aes(x=X1, y=Y1)) + geom_point(aes(color=X7)) + geom_smooth(aes(x=X1)) + facet_wrap(.~X5) + ggtitle ('Relative Compactness against Heating Load') + xlab('Relative Compactness') + ylab('Heating Load')
+
+ggplot(df,aes(x=X2, y=Y1)) + geom_point(aes(color=X7)) + geom_smooth(aes(x=X2)) + facet_wrap(.~X5) + ggtitle ('Surface Area against Heating Load') + xlab('Surface Area') + ylab('Heating Load')
+
+ggplot(df,aes(x=X1, y=Y2)) + geom_point(aes(color=X7)) + geom_smooth(aes(x=X1)) + facet_wrap(.~X5) + ggtitle ('Relative Compactness against Cooling Load') + xlab('Relative Compactness') + ylab('Cooling Load')
+
+ggplot(df,aes(x=X2, y=Y2)) + geom_point(aes(color=X7)) + geom_smooth(aes(x=X2)) + facet_wrap(.~X5) + ggtitle ('Surface Area against Heating Load') + xlab('Surface Area') + ylab('Cooling Load')
+```
