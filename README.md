@@ -1,3 +1,6 @@
+Introduction Website:
+http://rpubs.com/Michaelkob/980111
+
 The Project:
 
 This project involves analyzing specific building attributes and how they affect the energy efficiency of the building itself. The analysis of the attributes would be done by utilizing a regression model and comparing the building attributes to the heating and cooling loads of the building itself.
